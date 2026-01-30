@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Springy Wipe Down Card</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+  }
+
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease;
+  }
+
+  .tooltip-button:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+  }
+
+  /* Card style */
+  .tooltip-card {
+    position: absolute;
+    top: 110%; /* Below button */
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px); /* Start slightly above */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+
+  .tooltip-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent rgba(255, 255, 255, 0.15) transparent;
+  }
+
+  .tooltip-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+  }
+
+  .tooltip-card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Animation */
+  @keyframes dropBounce {
+    0% {
+      transform: translateX(-50%) translateY(-20px);
+      opacity: 0;
+    }
+    60% {
+      transform: translateX(-50%) translateY(10px);
+      opacity: 1;
+    }
+    80% {
+      transform: translateX(-50%) translateY(-5px);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .tooltip-container:hover .tooltip-card {
+    animation: dropBounce 0.5s cubic-bezier(0.25, 1.25, 0.5, 1) forwards;
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="tooltip-container">
+  <button class="tooltip-button">Hover me!</button>
+  <div class="tooltip-card">
+    <h3>Springy Tooltip</h3>
+    <p>This card drops down with a smooth spring effect when you hover over the button. Perfect for modern dashboards!</p>
+  </div>
+</div>
+
+</body>
+</html>
